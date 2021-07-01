@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Style inputs */
+
+img{
+  background-color: #f2f2f2;
+}
+
+button[type=submit] {
+  background-color: #ff0000;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition-duration: 0.4s;
+  width: 200px;
+}
+
+button[type=submit]:hover {
+  background-color: #ff000070;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=number], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #aa0404;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+
+
+p, h2, label{
+  color: #f2f2f2;
+}
+
+/* Style the container/contact section */
+.container {
+  border-radius: 5px;
+  background-color: #000000;
+  padding: 10px;
+}
+
+/* Create two columns that float next to eachother */
+.column {
+  float: left;
+  width: 50%;
+  margin-top: 6px;
+  padding: 20px;
+  background-color: #000000;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- <h2>Responsive Contact Section</h2>
+<p>Resize the browser window to see the effect.</p>
+-->
+<div class="container">
+  <div style="text-align:center">
+    <h2>Create New Admin</h2>
+    <p>Crate a new admin who will take responsibility that adding new passports to the blockchain.</p>
+  </div>
+  <div class="row">
+    <div class="column">
+      <label id="passCount">Current Passport Count:</label>
+      <img src="/images/passportlogo_black.png" style="width:100%" ;>
+      <form action="index.html">
+        <button type="submit" class="btn btn-primary" action="index.html">Back To Main Menu</button>
+      
+      </form>
+    </div>
+
+    <div id="loader" style="display: none;">
+        <p class="text-center">Loading...</p>
+    </div>
+
+    <div id="content" class="column" >
+      
+      
+      
+      <form onSubmit="App.createNewAdmin(); return false;">
+        
+        <label for="fname">Full Name</label>
+        <input type="text" id="fname" name="fname" placeholder="New admins full name..">
+
+        <label for="newaddress">Address</label>
+        <input type="text" id="newaddress" name="newaddress" placeholder="New admins address..">
+
+        <button type="submit" class="btn btn-primary">Create</button>
+        
+      </form>
+      <p id="accountAddress" class="text-center"></p>
+      
+    </div>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="app.js"></script>
+<script src="web3.min.js"></script>
+
+<script src="truffle-contract.js"></script>
+
+
+</body>
+</html>

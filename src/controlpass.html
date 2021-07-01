@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Style inputs */
+
+img{
+  background-color: #f2f2f2;
+}
+
+button[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition-duration: 0.4s;
+  width: 200px;
+}
+
+button[type=submit]:hover {
+  background-color: #7700ff;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=number], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+p, h2, label{
+  color: #f2f2f2;
+}
+
+/* Style the container/contact section */
+.container {
+  border-radius: 5px;
+  background-color: #000000;
+  padding: 10px;
+}
+
+/* Create two columns that float next to eachother */
+.column {
+  float: left;
+  width: 50%;
+  margin-top: 6px;
+  padding: 20px;
+  background-color: #000000;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+ /* Popup container */
+ .popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+  visibility: hidden;
+  width: 250px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+.popup .close {
+  visibility: hidden;
+  -webkit-animation: fadeOut 2s;
+  animation: fadeOut 2s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+} 
+
+@-webkit-keyframes fadeOut {
+  from {opacity: 1;}
+  to {opacity: 0;}
+}
+
+@keyframes fadeOut {
+  from {opacity: 1;}
+  to {opacity:0 ;}
+} 
+
+</style>
+</head>
+<body>
+
+<!-- <h2>Responsive Contact Section</h2>
+<p>Resize the browser window to see the effect.</p>
+-->
+<div class="container">
+  <div style="text-align:center">
+    <h2>Passport Control</h2>
+    <p>Control the passport if its exist on blockchain or not.</p>
+  </div>
+  <div class="row">
+    <div class="column">
+      <label id="passCount">Current Passport Count:</label>
+      <img src="/images/passportlogo_black.png" style="width:100%" ;>
+      <form action="index.html">
+        <button type="submit" class="btn btn-primary" action="index.html">Back To Main Menu</button>
+      
+      </form>
+    </div>
+
+    <div id="loader" style="display: none;">
+        <p class="text-center">Loading...</p>
+    </div>
+
+    <div id="content" class="column" >
+      
+      
+      
+      <form onSubmit="App.controlPassport(); return false;">
+        
+        <label for="fname">Full Name</label>
+        <input type="text" id="fname" name="fname" placeholder="Your name..">
+        <label for="passnumber">Passport Number</label>
+        <input type="text" id="passnumber" name="passnumber" placeholder="Your passport number..">
+        <label for="syear">Expire year</label>
+        <input type="number" id="syear" placeholder="YYYY" pattern = "[0-9]" maxlength="4" min="2017" max="2100">
+        
+        <script>
+          document.querySelector("input[type=number]")
+          .oninput = e => console.log(new Date(e.target.valueAsNumber, 0, 1))
+        </script>
+
+        <div class="popup">
+          <span class="popuptext" id="popup">This Passport does exist on blockchain.</span>
+          <span class="popuptext" id="popuperr">Something wrong with this passport. Whether expired or not even on blockchain.</span>
+          <button type="submit" class="btn btn-primary">Save</button>      
+        </div> 
+
+
+      </form>
+      <p id="accountAddress" class="text-center"></p>
+      
+    </div>
+  </div>
+  
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="app.js"></script>
+<script src="web3.min.js"></script>
+
+<script src="truffle-contract.js"></script>
+
+
+</body>
+</html>
